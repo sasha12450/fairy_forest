@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Сказочный лес</title>
+	<link rel="stylesheet" href="css/main.css">
+	<script src="libs/gsap/gsap.min.js" defer></script>
+	<script src="libs/gsap/ScrollTrigger.min.js" defer></script>
+	<script src="libs/gsap/ScrollSmoother.min.js" defer></script>
+	<script src="js/app.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+	<script type="text/javascript" >
+
+    window.onkeydown = function(evt) {
+        if(evt.keyCode == 123) return false;
+    };
+
+    window.onkeypress = function(evt) {
+        if(evt.keyCode == 123) return false;
+    };
+</script>
+	<style>
+		.main-article__header,
+		.main-article__paragraph {
+			opacity: 0;
+			transform: translateY(50px);
+			transition: opacity 1s, transform 1s;
+		}
+
+		.main-article__content {
+			visibility: hidden;
+		}
+
+		.main-article__content.visible {
+			visibility: visible;
+		}
+
+		.main-article__content.visible .main-article__header {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+			.main-article__content.visible .main-article__paragraph {
+			opacity: 1;
+			transform: translateY(0);
+			transition-delay: 0.5s;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="content">
+			<header class="main-header">
+				<div class="layers">
+					<div class="layer__header">
+						<div class="layers__caption">Добро пожаловать</div>
+						<div class="layers__title">Сказочный лес</div>
+					</div>
+					<div class="layer layers__base" style="background-image: url(img/layer-base.png);"></div>
+					<div class="layer layers__middle" style="background-image: url(img/layer-middle.png);"></div>
+					<div class="layer layers__front" style="background-image: url(img/layer-front.png);"></div>
+				</div>
+			</header>
+			<article class="main-article" style="background-image: url(img/dungeon.jpg);">
+				<div class="main-article__content">
+					<h2 class="main-article__header">Пещера</h2>
+					<p class="main-article__paragraph">Продолжая свой путь, вы попадаете в таинственную пещеру, которая скрывает в себе множество загадок и тайн. Сталактиты и сталагмиты образуют удивительные формы, а свет, проникающий сквозь щели в скалах, создает волшебную атмосферу. Вы можете услышать пение эха и чувствовать прохладу воздуха, что добавляет загадочности этому месту.</p>
+				</div>
+			</article>
+			<article class="main-article" style="background-image: url(img/peshera.jpg);">
+				<div class="main-article__content">
+					<h2 class="main-article__header" style="margin-top: 100px;">Водная гармония</h2>
+					<p class="main-article__paragraph">Выходя из пещеры, перед вами открывается прекрасный вид на водную стихию. Бурлящий поток уносит вас по своему пути, создавая мелодичные звуки и создавая чувство гармонии с природой. Вы можете увидеть кристально чистую воду, которая играет на солнце и отражает красоту окружающей природы.</p>
+				</div>
+			</article>
+			<article class="main-article" style="background-image: url(img/sea.jpg);">
+				<div class="main-article__content">
+					<h2 class="main-article__header" style="margin-top: -50px;color: #ffd700;">Океанская величавость</h2>
+					<p class="main-article__paragraph" style="color: black;">И, наконец, ваше путешествие приводит вас к бескрайнему океану. Голубая бездна океана растворяется в горизонте, а волны прибоя создают завораживающий звук. Вы можете почувствовать мощь и величие природы, стоя у берега океана, где земля встречается с морем.</p>
+				</div>
+			</article>
+						<article class="main-article" style="background-image: url(img/priroda_ras.jpg);">
+				<div class="main-article__content">
+					<h2 class="main-article__header" style="margin-top: -50px; ">Природные чудеса</h2>
+					<p class="main-article__paragraph">Сказочный лес, пещера, вода и океан - каждое из этих мест природы имеет свою уникальность и привлекательность, создавая впечатляющее путешествие сквозь различные аспекты природы.</p>
+				</div>
+			</article>
+		</div>
+	</div>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var articles = document.querySelectorAll('.main-article');
+			
+			function checkVisibility() {
+				for (var i = 0; i < articles.length; i++) {
+					var articleContent = articles[i].querySelector('.main-article__content');
+					var contentPosition = articleContent.getBoundingClientRect().top;
+					var windowPosition = window.innerHeight;
+
+					if (contentPosition < windowPosition) {
+						articleContent.classList.add('visible');
+					}
+				}
+			}
+
+			window.addEventListener('scroll', checkVisibility);
+			checkVisibility();
+		});
+	</script>
+</body>
+</html>
